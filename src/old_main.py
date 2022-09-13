@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 
-import config
-import database
+import src.config as config
+import database.database as database
 
 app = Flask("API")
 

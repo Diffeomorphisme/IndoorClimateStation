@@ -7,5 +7,6 @@ database_credentials = {"host": "sql859.main-hosting.eu",
 expected_api_call_fields = {"key": "apiKey",
 							"datetime": "datetime",
 							"temperature": "temperature",
-							"humidity": "humidity"
+							"humidity": "humidity",
+							"time": "time"
 							}
