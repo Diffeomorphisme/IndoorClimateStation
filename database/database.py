@@ -1,3 +1,4 @@
+
 import mysql.connector
 from mysql.connector import Error
 
@@ -26,7 +27,6 @@ class Database():
 		return self._pwd
 
 	def fetch_api_keys(self):
-		print("Fetching data from Database")
 		data = self._request_data("SELECT apiAPIKEY FROM tblAPIKey")
 		curated_data = [item[0] for item in data]
 		return curated_data
@@ -52,8 +52,7 @@ class Database():
 				conn.close()
 
 	def insert_sensor_data(self, api_key, datetime, temperature, humidity):
-		print("Inserting data into Database")
-		self._insert_data(f"INSERT INTO logtblClimateData (cliSensorID, cliTime, cliTemperature, cliHumidity) VALUES ((" \
+		return self._insert_data(f"INSERT INTO logtblClimateData (cliSensorID, cliTime, cliTemperature, cliHumidity) VALUES ((" \
 						f"SELECT apiSensorID FROM tblAPIKey WHERE apiAPIKey = '{api_key}'), " \
 						f"'{datetime}', {temperature}, {humidity}) ")
 
@@ -69,10 +68,11 @@ class Database():
 			cursor = conn.cursor()
 			cursor.execute(mysql_request)
 			conn.commit()
-			print(f"Added lines: {cursor.rowcount}")
+			return True
 
 		except Error as e:
 			print(e)
+			return False
 
 		finally:
 			if conn is not None and conn.is_connected():
