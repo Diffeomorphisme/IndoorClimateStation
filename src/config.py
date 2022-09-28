@@ -2,7 +2,6 @@ import os
 
 if not os.getenv("CONTAINER_RUNNING"):
     from dotenv import load_dotenv
-
     print("Running on local environment.")
     load_dotenv()
 
