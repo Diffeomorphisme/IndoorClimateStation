@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 from app.database.base import Base
-import app.database.models
+import app.database.models # noqa
 
 
 engine = create_engine(settings.DATABASE_STRING, echo=True)

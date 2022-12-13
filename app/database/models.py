@@ -5,14 +5,16 @@ from app.database.base import Base
 
 SENSOR_COLUMNS = {
     "id",
-    "key"
+    "key",
+    "name"
 }
 
 LOG_COLUMNS = {
     "id",
-    "user_id",
-    "address",
-    "user"
+    "sensor_id",
+    "temperature",
+    "humidity",
+    "time"
 }
 
 
@@ -21,6 +23,7 @@ class Sensor(Base):
 
     id = Column(Integer, primary_key=True)
     key = Column(String(30))
+    name = Column(String(30))
 
     def get_dict(self):
         return {c: getattr(self, c) for c in SENSOR_COLUMNS}
@@ -37,7 +40,3 @@ class Log(Base):
 
     def get_dict(self):
         return {c: getattr(self, c) for c in LOG_COLUMNS}
-
-
-sensor = Sensor()
-log = Log()
